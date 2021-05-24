@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Stock } from './../../interfaces/stock';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -13,13 +15,17 @@ export class SearchFieldComponent implements OnInit {
     }
   )
 
-  constructor() { }
+  @Output() newStockEmitter = new EventEmitter<Stock>();
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    console.log(this.stockSearchForm);
+    this.http.get<Stock>('https://api.iextrading.com/1.0/tops/last?symbols=' + this.stockSearchForm.value.query).subscribe(stock => {
+      this.newStockEmitter.next(stock);
+    })
   }
 
 }
