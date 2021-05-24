@@ -1,3 +1,4 @@
+import { Stock } from './interfaces/stock';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'avanan';
+  data: Stock[] = [];
+
+  onNewStock(event: Stock): void {
+    this.data = this.data.concat(event);
+  }
 }

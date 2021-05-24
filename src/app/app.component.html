@@ -1,7 +1,7 @@
-<app-search-field>
+<app-search-field (newStockEmitter)="onNewStock($event)">
 
 </app-search-field>
 
-<app-table>
+<app-table [data]="data">
 
 </app-table>

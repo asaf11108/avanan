@@ -1,24 +1,25 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Stock } from '../../interfaces/stock';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Stock>;
   columns = ['symbol', 'price', 'size', 'time'];
   @ViewChild(MatSort) sort: MatSort;
 
+  @Input() set data(val: Stock[]) {
+    this.dataSource.data = val;
+  }
+
   constructor() {
     this.dataSource = new MatTableDataSource<Stock>();
-    this.dataSource.data = [
-      {'symbol': 'SNAP','price': 15.08,'size': 100,'time': 1562593648310},
-      {'symbol': 'SN','price': 18,'size': 100,'time': 1562593648310}
-    ];
   }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort

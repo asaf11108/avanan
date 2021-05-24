@@ -6,7 +6,7 @@
             <td mat-cell *matCellDef="let row">
                 <ng-container *ngIf="col !== 'time'; then genericCol else timeCol"></ng-container>
                 <ng-template #genericCol>{{ row[col] }}</ng-template>
-                <ng-template #timeCol>{{ row[col] | date }}</ng-template>
+                <ng-template #timeCol>{{ row[col] | date:'short' }}</ng-template>
             </td>
         </ng-container>
 
