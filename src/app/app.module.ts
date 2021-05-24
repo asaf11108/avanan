@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatSortModule } from '@angular/material/sort';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
+    ReactiveFormsModule,
+
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,

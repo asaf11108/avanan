@@ -1,1 +1,8 @@
-<p>search-field works!</p>
+<form [formGroup]="stockSearchForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Search Stock</mat-label>
+        <input formControlName="query" matInput placeholder="Search stock">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="stockSearchForm.invalid">Submit</button>
+</form>
